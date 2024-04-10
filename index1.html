@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0020)https://karpathy.ai/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Ashwin Char</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -12,11 +10,11 @@
     <h1>STICKY SLIDER NAV</h1>
     <h3>Sliding content with sticky tab nav</h3>
     <div class="et-hero-tabs-container">
-      <a class="et-hero-tab" href="#tab-es6">ES6</a>
-      <a class="et-hero-tab" href="#tab-flexbox">Flexbox</a>
-      <a class="et-hero-tab" href="#tab-react">React</a>
-      <a class="et-hero-tab" href="#tab-angular">Angular</a>
-      <a class="et-hero-tab" href="#tab-other">Other</a>
+      <a class="et-hero-tab" href="#tab-es6">About</a>
+      <a class="et-hero-tab" href="#tab-flexbox">Experience</a>
+      <a class="et-hero-tab" href="#tab-react">Projects</a>
+      <a class="et-hero-tab" href="#tab-angular">Interests</a>
+      <a class="et-hero-tab" href="#tab-other">Contact</a>
       <span class="et-hero-tab-slider"></span>
     </div>
   </section>
@@ -45,64 +43,7 @@
     </section>
   </main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const tabContainerHeight = 70;
-    let currentId = null;
-    let currentTab = null;
-    const navContainer = document.querySelector('.et-hero-tabs-container');
-    const tabs = document.querySelectorAll('.et-hero-tab');
-    const tabSlider = document.querySelector('.et-hero-tab-slider');
-    const originalNavContainerOffsetTop = navContainer.offsetTop; // Get the original top offset of the navigation container
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetSection = document.querySelector(this.getAttribute('href'));
-            const offsetTop = targetSection.offsetTop - tabContainerHeight + 1;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    document.addEventListener('scroll', () => {
-        let newCurrentId;
-        let newCurrentTab;
-        tabs.forEach(tab => {
-            const targetSection = document.querySelector(tab.getAttribute('href'));
-            const offsetTop = targetSection.offsetTop - tabContainerHeight;
-            const offsetBottom = targetSection.offsetTop + targetSection.offsetHeight - tabContainerHeight;
-            if (window.scrollY > offsetTop && window.scrollY < offsetBottom) {
-                newCurrentId = tab.getAttribute('href');
-                newCurrentTab = tab;
-            }
-        });
-
-        if (newCurrentId !== currentId) {
-            currentId = newCurrentId;
-            currentTab = newCurrentTab;
-            tabs.forEach(tab => tab.classList.remove('et-hero-tab-active'));
-            currentTab.classList.add('et-hero-tab-active');
-            setSliderCss();
-        }
-
-        // Check if the user has scrolled back above the original position of the navigation container
-        if (window.scrollY > originalNavContainerOffsetTop) {
-            navContainer.classList.add('et-hero-tabs-container--top');
-        } else {
-            navContainer.classList.remove('et-hero-tabs-container--top');
-        }
-    });
-
-    function setSliderCss() {
-        if (currentTab) {
-            tabSlider.style.width = `${currentTab.offsetWidth}px`;
-            tabSlider.style.left = `${currentTab.offsetLeft}px`;
-        }
-    }
-});
+  <script src="scripts/sticky-nav.js">
 </script>
 </body>
 </html>
