@@ -531,4 +531,9 @@ h3 {
     height: 100vh;
   }
 
-  
+  #text {
+    min-height: 30px; /* Ensures the container does not collapse when empty */
+    width: auto; /* Adjust width as necessary */
+    text-align: center;
+    display: inline; /* Makes it easier to manage layout */
+}

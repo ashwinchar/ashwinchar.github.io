@@ -7,13 +7,14 @@
     <script src="http://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
   </head>
   <body>
 <!-- Hero -->
 <section class="et-hero-tabs">
+  <h1>HI I'M ASHWIN</h1>
+  <div style="margin-bottom: 20px;"><h3 id="text"></h3></div>
   <svg id="my_dataviz"></svg>
-    <h1>HI I'M ASHWIN</h1>
-    <h3>Check out my recent work</h3>
     <div class="et-hero-tabs-container">
       <a class="et-hero-tab" href="#tab-es6">About</a>
       <a class="et-hero-tab" href="#tab-flexbox">Experience</a>
@@ -177,6 +178,17 @@
           .on("mouseleave", mouseLeave )
         }
     
-    </script>   
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+          var typed = new Typed("#text", {
+              strings: ["Computer Vision Researcher", "Software Engineer Intern", "Cybersecurity Intern", "Traveler", "Checkout My Work!"],
+              typeSpeed: 75,
+              backSpeed: 75,
+              backDelay: 1000,
+              loop: true
+          });
+      });
+    </script>         
 </body>
 </html>
