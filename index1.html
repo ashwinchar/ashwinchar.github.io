@@ -100,11 +100,9 @@
   <script src="scripts/sticky-nav.js"></script>
   <script>
 
-    // The svg
-    // The svg
     var svg = d3.select("#my_dataviz"),
       width = window.innerWidth,
-      height = window.innerHeight;
+      height = window.innerHeight*0.7;
     
     svg.attr('width', width)
       .attr('height', height);
@@ -113,14 +111,14 @@
     // Map and projection
     var path = d3.geoPath();
     var projection = d3.geoMercator()
-      .scale(150)
-      .translate([width / 2, height / 2]);
+      .scale(170)
+      .translate([width / 2, (height / 2)]);
     
     // Data and color scale
     var data = d3.map();
     var colorScale = d3.scaleThreshold()
       .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
-      .range(d3.schemeBlues[7]);
+      .range(d3.schemeGreens[7]);
     
     // Load external data and boot
     d3.queue()
@@ -152,11 +150,15 @@
           .duration(200)
           .style("stroke", "transparent")
       }
-    
+
+      var filteredFeatures = topo.features.filter(function(d) {
+          return d.properties.name !== "Antarctica"; // Change this condition based on how your data identifies Antarctica
+      });
+
       // Draw the map
       svg.append("g")
         .selectAll("path")
-        .data(topo.features)
+        .data(filteredFeatures)
         .enter()
         .append("path")
           // draw each country
