@@ -4,12 +4,16 @@
     <title>Ashwin Char</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <script src="http://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
   </head>
   <body>
 <!-- Hero -->
 <section class="et-hero-tabs">
-    <h1>STICKY SLIDER NAV</h1>
-    <h3>Sliding content with sticky tab nav</h3>
+  <svg id="my_dataviz" width="400" height="300"></svg>
+    <h1>HI I'M ASHWIN</h1>
+    <h3>Check out my recent work</h3>
     <div class="et-hero-tabs-container">
       <a class="et-hero-tab" href="#tab-es6">About</a>
       <a class="et-hero-tab" href="#tab-flexbox">Experience</a>
@@ -23,28 +27,150 @@
   <!-- Main -->
   <main class="et-main">
     <section class="et-slide" id="tab-es6">
-      <h1>ES6</h1>
-      <h3>something about es6</h3>
-    </section>
+      <h1>About Me</h1>
+      <div class="about-container">
+        <div class="about-top">
+          <div class="about-image-top">
+            <!-- Image above text -->
+            <img src="assets/headshot.jpg" alt="A picture of me">
+          </div>
+          <div class="about-text">
+            <!-- Your text here -->
+            <p>Here's a little bit about me...</p>
+          </div>
+        </div>
+        <div class="about-right">
+          <!-- Image on the right side -->
+          <img src="path/to/your/right-side-image.jpg" alt="Another picture of me">
+        </div>
+      </div>
+    </section>    
     <section class="et-slide" id="tab-flexbox">
-      <h1>Flexbox</h1>
-      <h3>something about flexbox</h3>
+      <h1>Experience</h1>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">June 2023 - Aug 2023</div>
+          <div class="timeline-content">
+            <img src="assets/agua-clara-logo.png" alt="AguaClara Cornell Logo" class="timeline-image">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis pellentesque metus id lacinia.</p>
+            <img src="event-image-2.png" alt="Event Image">
+          </div>
+        </div>
+        <div class="timeline-item"> 
+          <div class="timeline-date">June 2023 - Aug 2023</div>
+          <div class="timeline-content">
+            <img src="assets/charles-schwab-logo.png" alt="Charles Schwab Logo" class="timeline-image">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis pellentesque metus id lacinia.</p>
+            <img src="event-image-1.png" alt="Event Image">
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">June 2023 - Aug 2023</div>
+          <div class="timeline-content">
+            <img src="assets/verizon-logo.png" alt="Verizon Logo" class="timeline-image">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis pellentesque metus id lacinia.</p>
+            <img src="event-image-3.png" alt="Event Image">
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">June 2023 - Aug 2023</div>
+          <div class="timeline-content">
+            <img src="assets/verizon-logo.png" alt="Verizon Logo" class="timeline-image">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis pellentesque metus id lacinia.</p>
+            <img src="event-image-3.png" alt="Event Image">
+          </div>
+        </div>
+      </div>
+      <script src="scripts/vertical-timeline.js"></script>      
     </section>
     <section class="et-slide" id="tab-react">
-      <h1>React</h1>
+      <h1>Projects</h1>
       <h3>something about react</h3>
     </section>
     <section class="et-slide" id="tab-angular">
-      <h1>Angular</h1>
+      <h1>Interests</h1>
       <h3>something about angular</h3>
     </section>
     <section class="et-slide" id="tab-other">
-      <h1>Other</h1>
+      <h1>Contact</h1>
       <h3>something about other</h3>
     </section>
   </main>
 
-  <script src="scripts/sticky-nav.js">
-</script>
+  <script src="scripts/sticky-nav.js"></script>
+  <script>
+
+    // The svg
+    var svg = d3.select("svg"),
+      width = +svg.attr("width"),
+      height = +svg.attr("height");
+    
+    // Map and projection
+    var path = d3.geoPath();
+    var projection = d3.geoMercator()
+      .scale(70)
+      .center([0,20])
+      .translate([width / 2, height / 2]);
+    
+    // Data and color scale
+    var data = d3.map();
+    var colorScale = d3.scaleThreshold()
+      .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
+      .range(d3.schemeBlues[7]);
+    
+    // Load external data and boot
+    d3.queue()
+      .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+      .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world_population.csv", function(d) { data.set(d.code, +d.pop); })
+      .await(ready);
+    
+    function ready(error, topo) {
+    
+      let mouseOver = function(d) {
+        d3.selectAll(".Country")
+          .transition()
+          .duration(200)
+          .style("opacity", .5)
+        d3.select(this)
+          .transition()
+          .duration(200)
+          .style("opacity", 1)
+          .style("stroke", "black")
+      }
+    
+      let mouseLeave = function(d) {
+        d3.selectAll(".Country")
+          .transition()
+          .duration(200)
+          .style("opacity", .8)
+        d3.select(this)
+          .transition()
+          .duration(200)
+          .style("stroke", "transparent")
+      }
+    
+      // Draw the map
+      svg.append("g")
+        .selectAll("path")
+        .data(topo.features)
+        .enter()
+        .append("path")
+          // draw each country
+          .attr("d", d3.geoPath()
+            .projection(projection)
+          )
+          // set the color of each country
+          .attr("fill", function (d) {
+            d.total = data.get(d.id) || 0;
+            return colorScale(d.total);
+          })
+          .style("stroke", "transparent")
+          .attr("class", function(d){ return "Country" } )
+          .style("opacity", .8)
+          .on("mouseover", mouseOver )
+          .on("mouseleave", mouseLeave )
+        }
+    
+    </script>   
 </body>
 </html>

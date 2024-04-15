@@ -260,7 +260,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-height: 100vh;
+min-height: 100vh;
 position: relative;
 background: #f0f3f5;
     text-align: center;
@@ -345,3 +345,190 @@ h3 {
 .et-hero-tab-active {
     font-weight: bold; /* Example style for the active tab */
 }
+
+.timeline {
+    position: relative;
+    padding: 50px 0;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    width: 4px;
+    background: #7B2D26;
+  }
+  
+  .timeline-item {
+    position: relative;
+    width: 40vw;
+    padding: 10px 40px;
+    box-sizing: border-box;
+  }
+  
+  .timeline-item:nth-child(odd) {
+    left: -20vw;
+  }
+  
+  .timeline-item:nth-child(even) {
+    left: 20vw;
+  }
+  
+  .timeline-content {
+    position: relative;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+    border-radius: 12px;
+  }
+  
+  .timeline-content::before {
+    content: attr(data-year);
+    position: absolute;
+    left: 100%;
+    top: 20px;
+    white-space: nowrap;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  .timeline-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .timeline-content p {
+    margin-bottom: 10px;
+  }
+  
+  .timeline-content img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-content::before {
+    left: auto;
+    right: 100%;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .timeline::before {
+      left: 10px;
+    }
+  
+    .timeline-item {
+      width: 100%;
+      left: 0;
+      padding-left: 30px;
+    }
+  
+    .timeline-item .timeline-content::before {
+      position: static;
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+
+  .timeline-date {
+    color: #555; /* Choose a color that makes the text visible */
+    font-weight: bold;
+    position: absolute; /* Position the dates absolutely to control their placement */
+    top: -10px; /* Adjust as necessary to place above the content card */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust as necessary for centering */
+    background: white; /* Background color for the date */
+    padding: 5px 10px; /* Padding around the date text */
+    border-radius: 8px; /* Optionally, add rounded corners to the date background */
+    z-index: 3; /* Ensure the date is above the timeline bar */
+  }
+
+  /* Existing styles */
+
+/* Add styles for the logo images */
+.timeline-image {
+    display: block; /* Logos are block-level to manage layout */
+    max-width: 100%; /* Ensures the image is never bigger than its container */
+    height: auto; /* Maintains aspect ratio */
+    margin-bottom: 20px; /* Spacing between the logo and the text */
+  }
+  
+  /* You may want to customize the sizes for larger screens */
+  @media screen and (min-width: 600px) {
+    .timeline-image {
+      max-width: 80%; /* Example: you may want the logo to be smaller */
+      margin-bottom: 30px;
+      margin-left: auto; /* Center align the image */
+      margin-right: auto;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .timeline-date {
+      position: static; /* Stack the date on top of the card for small screens */
+      transform: none;
+      margin-bottom: 10px; /* Add space between the date and content card */
+    }
+  }
+  @media (max-width: 768px) { /* Adjusts styles for screens up to 768px wide */
+    .timeline-item {
+      width: 100%; /* On smaller screens, each item takes full width */
+      /* You can adjust padding, margins, etc., here as well */
+    }
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Ensure content wraps on smaller screens */
+    gap:40px;
+  }
+  
+  .about-top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the items for aesthetics */
+  }
+  
+  .about-right {
+    flex: 1;
+    /* Adjust padding or margin as necessary */
+  }
+  
+  .about-image-top img, .about-right img {
+    width: 100%;
+    max-width: 400px; /* Adjust based on your preference */
+    height: auto;
+    margin-bottom: 20px; /* Space between the top image and text */
+  }
+  
+  .about-text {
+    /* Style your text as needed */
+    font-family: 'Rubik';
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+    }
+  
+    .about-top, .about-right {
+      width: 100%; /* Take full width on smaller screens */
+    }
+  
+    .about-image-top img, .about-right img {
+      max-width: 100%;
+    }
+  }
+
+  #world-map svg {
+    display: block;
+    background-color: #fff;
+    margin: 0 auto;
+  }
+  
+
+  
