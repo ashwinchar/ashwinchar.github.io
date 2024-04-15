@@ -11,7 +11,7 @@
   <body>
 <!-- Hero -->
 <section class="et-hero-tabs">
-  <svg id="my_dataviz" width="400" height="300"></svg>
+  <svg id="my_dataviz"></svg>
     <h1>HI I'M ASHWIN</h1>
     <h3>Check out my recent work</h3>
     <div class="et-hero-tabs-container">
@@ -101,15 +101,19 @@
   <script>
 
     // The svg
-    var svg = d3.select("svg"),
-      width = +svg.attr("width"),
-      height = +svg.attr("height");
+    // The svg
+    var svg = d3.select("#my_dataviz"),
+      width = window.innerWidth,
+      height = window.innerHeight;
+    
+    svg.attr('width', width)
+      .attr('height', height);
+
     
     // Map and projection
     var path = d3.geoPath();
     var projection = d3.geoMercator()
-      .scale(70)
-      .center([0,20])
+      .scale(150)
       .translate([width / 2, height / 2]);
     
     // Data and color scale
