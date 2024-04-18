@@ -537,3 +537,27 @@ h3 {
     text-align: center;
     display: inline; /* Makes it easier to manage layout */
 }
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.skill-item {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  margin: 10px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-item img {
+  width: 100%;
+  max-width: 100px; /* adjust as needed */
+  height: auto;
+}
+
+.skill-item:hover {
+  transform: scale(1.1);
+  border-color: #ff4500; /* or any highlight color */
+}
