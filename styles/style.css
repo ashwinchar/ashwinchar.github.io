@@ -494,6 +494,9 @@ h3 {
   .about-right {
     flex: 1;
     /* Adjust padding or margin as necessary */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
   
   .about-image-top img, .about-right img {
@@ -545,19 +548,30 @@ h3 {
 }
 
 .skill-item {
-  border: 2px solid transparent;
-  border-radius: 5px;
-  margin: 10px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  width: calc(25% - 10px); /* Subtract margin */
+  margin: 5px; /* Half the subtracted amount to maintain spacing on both sides */
+  border: 3px solid #7B2D26; /* Your existing border */
+  border-radius: 10px; /* Your existing border-radius */
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Stack image and text vertically */
+  align-items: center;
+  text-align: center; /* Center text */
 }
 
 .skill-item img {
-  width: 100%;
-  max-width: 100px; /* adjust as needed */
+  width: 70%; /* Reduced size of the image */
   height: auto;
+  transition: transform 0.3s ease; /* Ensure this matches the container's transition */
 }
 
 .skill-item:hover {
-  transform: scale(1.1);
-  border-color: #ff4500; /* or any highlight color */
+  transform: scale(1.1); /* A subtle scale for the hover effect */
 }
+
+.skill-item .skill-title {
+  color: rgb(0, 0, 0); /* Adjust the color to fit your design */
+  margin:1px;
+  font-size: 1.1em; /* Adjust the size as needed */
+}
+
