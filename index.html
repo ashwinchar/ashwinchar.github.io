@@ -141,14 +141,50 @@
     <section class="et-slide" id="tab-react">
       <h1>Projects</h1>
       <h3>something about react</h3>
+      <div class="projects-page">
+        <div class="projects-container">
+          <div class="project-card">
+            <img src="assets/diagnosys.png" alt="Project Image" class="project-image">
+            <h3 class="project-title">DiagnoSys</h3>
+            <p class="project-description">DiagnoSys provides a solution to diagnosing which drug is causing a user's adverse event. The user provides general information about themselves and the drugs their taking. DiagnoSys then compares thier query with thousands of FDA adverse events and outputs a rankedlist of the most-likely drugs to be causing the adverse event.</p>
+            <a href="https://github.com/Zenshreee/diagnoSys" class="github-link">View on GitHub</a>
+          </div>
+          <div class="project-card">
+            <img src="assets/segmentation.png" alt="Project Image" class="project-image">
+            <h3 class="project-title">LaTex Tech</h3>
+            <p class="project-description">Using the power of character segmentation and convolusional neural networks, LaTex Tech accepts images of hand-writing or typed out equations and provides users with LaTex code that can be easily integrated within research papers, problem sets, or general notes.</p>
+            <a href="https://github.com/ashwinchar/LaTeX-Tech" class="github-link">View on GitHub</a>
+          </div>
+          <div class="project-card">
+            <img src="assets/pigeonhole.png" alt="Project Image" class="project-image">
+            <h3 class="project-title">Pigeonhole</h3>
+            <p class="project-description">Pigeonhole is a graphics based game similar to the children's game Battleship. Players alternate turns trying to uncover every hole on the map by throwing a bird at a gridspace. There are various birds worth various points, and players accumulate points by successfully uncovering a hole with a given bird.</p>
+            <a href="https://github.com/ashwinchar/Pigeonhole" class="github-link">View on GitHub</a>
+          </div>
+        </div>
+      </div>            
     </section>
     <section class="et-slide" id="tab-angular">
       <h1>Interests</h1>
       <h3>something about angular</h3>
     </section>
     <section class="et-slide" id="tab-other">
-      <h1>Contact</h1>
-      <h3>something about other</h3>
+      <h1>Contact Me</h1>
+      <h2>Get in touch</h2>
+      <div class="contact-card">
+        <div class="contact-section">
+          <div class="contact-links">
+            <a href="mailto:akc95@cornell.edu" class="contact-link">
+              <img src="assets/email-icon.png" alt="Email">
+              <span>akc95@cornell.edu</span>
+            </a>
+            <a href="https://www.linkedin.com/in/ashwinchar/" class="contact-link">
+              <img src="assets/linkedin-icon.png" alt="LinkedIn">
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -254,6 +290,33 @@
           item.style.borderColor = '#7B2D26';
         });
       });
-    </script>         
+    </script>
+    <script>// JavaScript can be used for additional interactivity if needed
+      document.querySelectorAll('.contact-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          console.log('Link clicked:', e.target.href);
+          // You can do more here, like tracking analytics
+        });
+      });
+      </script>
+      
+    <script>
+      document.querySelectorAll('.github-link').forEach(link => {
+        link.addEventListener('mouseover', () => {
+          // This function will be called when the mouse enters the link area
+          link.style.backgroundColor = '#ddd'; // Darker shade for hover effect
+        });
+
+        link.addEventListener('mouseout', () => {
+          // This function will be called when the mouse leaves the link area
+          link.style.backgroundColor = '#f0f0f0'; // Return to original color
+        });
+
+        link.addEventListener('click', () => {
+          console.log(`GitHub link clicked: ${link.getAttribute('href')}`);
+          // Here you could also implement additional logic, like tracking the click
+        });
+      });
+    </script>
 </body>
 </html>
