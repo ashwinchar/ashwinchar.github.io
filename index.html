@@ -32,8 +32,9 @@
       <div class="about-container">
         <div class="about-top">
           <div class="about-image-top">
-            <!-- Image above text -->
-            <img src="assets/headshot.jpg" alt="A picture of me">
+            <div class="interests-image">
+              <img src="assets/volcano.jpg" alt="A picture of me">
+            </div>
           </div>
           <div class="about-text">
             <!-- Your text here -->
@@ -202,21 +203,48 @@
     <section class="et-slide" id="tab-angular">
       <h1>Interests</h1>
       <section class="interests-section">
-        <div class="interests-card">
-          <h2 class="interests-title">My Interests</h2>
-          <p class="interests-text">I am passionate about traveling, weight lifting, and music.</p>
-          <div class="interests-icons">
-            <!-- Example icons with links -->
-            <a href="https://example.com"><img src="assets/travel.png" alt="Travel"></a>
-            <a href="https://example.com"><img src="assets/lifting.png" alt="Lifting"></a>
-            <a href="https://www.last.fm/user/shwinn23"><img src="assets/music.png" alt="Music"></a>
-          </div>
-        </div>
-        <div class="interests-image">
-          <img src="assets/volcano.jpg" alt="A picture showing my interests">
+        <div class="interests-container">
+          <button class="interest-link travel-btn">
+            <div class="interest-icon-large">
+              <img src="assets/travel.png" alt="Travel">
+            </div>
+            <h3 class="interest-title">Traveling</h3>
+          </button>
+          <button class="interest-link lifting-btn">
+            <div class="interest-icon-large">
+              <img src="assets/lifting.png" alt="Weight Lifting">
+            </div>
+            <h3 class="interest-title">Weight Lifting</h3>
+          </button>
+          <a href="https://www.last.fm/user/shwinn23" target="_blank" class="interest-link">
+            <div class="interest-icon-large">
+              <img src="assets/music.png" alt="Music">
+            </div>
+            <h3 class="interest-title">Music</h3>
+          </a>
         </div>
       </section>      
     </section>
+    
+    <!-- Travel Modal -->
+    <div id="travel-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Traveling</h2>
+        <p>I love exploring new cultures and discovering new places. Some of my favorite destinations include Iceland, Japan, and Australia.</p>
+        <img src="assets/travel-destinations.jpg" alt="Travel Destinations" class="travel-image">
+      </div>
+    </div>
+    
+    <!-- Lifting Modal -->
+    <div id="lifting-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Weight Lifting</h2>
+        <p>Staying fit and challenging myself physically is a passion of mine. I find weight lifting helps me stay focused and disciplined.</p>
+        <img src="assets/weight-lifting.jpg" alt="Weight Lifting" class="lifting-image">
+      </div>
+    </div>
     <section class="et-slide" id="tab-other">
       <h1>Contact Me</h1>
       <h2>Get in touch</h2>
@@ -321,7 +349,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function(){
           var typed = new Typed("#text", {
-              strings: ["Computer Vision Researcher", "Software Engineer Intern", "Cybersecurity Intern", "Traveler", "Checkout My Work!"],
+              strings: ["Computer Vision Researcher", "Software Engineer Intern", "Cybersecurity Intern", "Traveler", "Check out My Work!"],
               typeSpeed: 75,
               backSpeed: 75,
               backDelay: 1000,
@@ -439,6 +467,35 @@
           }
         });
       });
-      </script>      
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const travelModal = document.getElementById('travel-modal');
+          const liftingModal = document.getElementById('lifting-modal');
+        
+          document.querySelector('.travel-btn').addEventListener('click', () => {
+            travelModal.style.display = 'block';
+          });
+        
+          document.querySelector('.lifting-btn').addEventListener('click', () => {
+            liftingModal.style.display = 'block';
+          });
+        
+          document.querySelectorAll('.close-modal').forEach(close => {
+            close.addEventListener('click', () => {
+              travelModal.style.display = 'none';
+              liftingModal.style.display = 'none';
+            });
+          });
+        
+          window.addEventListener('click', event => {
+            if (event.target === travelModal || event.target === liftingModal) {
+              travelModal.style.display = 'none';
+              liftingModal.style.display = 'none';
+            }
+          });
+        });
+        </script>
+             
 </body>
 </html>
