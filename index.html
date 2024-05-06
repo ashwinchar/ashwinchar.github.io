@@ -156,23 +156,45 @@
       <h1>Projects</h1>
       <div class="projects-page">
         <div class="projects-container">
+          <!-- Project Card Example -->
           <div class="project-card">
             <img src="assets/diagnosys.png" alt="Project Image" class="project-image">
             <h3 class="project-title">DiagnoSys</h3>
-            <p class="project-description">DiagnoSys provides a solution to diagnosing which drug is causing a user's adverse event. The user provides general information about themselves and the drugs their taking. DiagnoSys then compares thier query with thousands of FDA adverse events and outputs a rankedlist of the most-likely drugs to be causing the adverse event.</p>
-            <a href="https://github.com/Zenshreee/diagnoSys" class="github-link">View on GitHub</a>
-          </div>
+            <p class="project-description">DiagnoSys provides patients with a tool to match side effects to a drug</p>
+            <a href="https://github.com/Zenshreee/diagnoSys" class="github-link" target="_blank">View on GitHub</a>
+            <button class="github-link learn-more-btn" data-modal="diagnoSysModal">Learn More</button>
+          </div> 
           <div class="project-card">
             <img src="assets/segmentation.png" alt="Project Image" class="project-image">
             <h3 class="project-title">LaTex Tech</h3>
-            <p class="project-description">Using the power of character segmentation and convolusional neural networks, LaTex Tech accepts images of hand-writing or typed out equations and provides users with LaTex code that can be easily integrated within research papers, problem sets, or general notes.</p>
-            <a href="https://github.com/ashwinchar/LaTeX-Tech" class="github-link">View on GitHub</a>
-          </div>
+            <p class="project-description">Converting handwriting to latex format using AI an computer vision</p>
+            <a href="https://github.com/ashwinchar/LaTeX-Tech" class="github-link" target="_blank">View on GitHub</a>
+            <button class="github-link learn-more-btn" data-modal="latexTechModal">Learn More</button>
+          </div> 
           <div class="project-card">
-            <img src="assets/pigeonhole.png" alt="Project Image" class="project-image">
+            <img src="assets/pigeonhole1.gif" alt="Project Image" class="project-image">
             <h3 class="project-title">Pigeonhole</h3>
-            <p class="project-description">Pigeonhole is a graphics based game similar to the children's game Battleship. Players alternate turns trying to uncover every hole on the map by throwing a bird at a gridspace. There are various birds worth various points, and players accumulate points by successfully uncovering a hole with a given bird.</p>
-            <a href="https://github.com/ashwinchar/Pigeonhole" class="github-link">View on GitHub</a>
+            <p class="project-description">Graphics–based Battleship Variant developed using functional programming principles</p>
+            <a href="https://github.com/ashwinchar/Pigeonhole" class="github-link" target="_blank">View on GitHub</a>
+            <button class="github-link learn-more-btn" data-modal="pigeonholeModal">Learn More</button>
+          </div>          
+
+          <!-- Add similar buttons for the other project cards -->
+
+          <!-- Modal Structure (Initial Hidden) -->
+          <div id="modal" class="modal">
+            <div class="modal-content">
+              <span class="close-modal">&times;</span>
+              <p class="modal-title"></p>
+              <img src="" alt="Project Image" class="modal-image">
+              <p class="modal-description"></p>
+              <p class="modal-role-title">My Role</p>
+              <p class="modal-role"></p>
+              <div class="modal-links">
+                <a href="#" class="modal-github-link" target="_blank">View on GitHub</a>
+                <a href="#" class="modal-live-link" target="_blank" style="display:none;">View Live</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>            
@@ -345,5 +367,78 @@
         });
       });
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('modal');
+        const modalContent = {
+          title: modal.querySelector('.modal-title'),
+          image: modal.querySelector('.modal-image'),
+          description: modal.querySelector('.modal-description'),
+          role: modal.querySelector('.modal-role'),
+          githubLink: modal.querySelector('.modal-github-link'),
+          liveLink: modal.querySelector('.modal-live-link')
+        };
+        const closeModal = document.querySelector('.close-modal');
+      
+        const projectDetails = {
+          diagnoSysModal: {
+            title: 'DiagnoSys',
+            image: 'assets/diagnosys.png',
+            description: 'DiagnoSys provides a solution to diagnosing which drug is causing a user\'s adverse event. The user provides general information about themselves and the drugs their taking. DiagnoSys then compares their query with thousands of FDA adverse events and outputs a ranked list of the most-likely drugs to be causing the adverse event.',
+            role: 'I developed the entire application from scratch, implementing data collection, data analysis, and building the web interface using React.',
+            githubLink: 'https://github.com/Zenshreee/diagnoSys',
+            liveLink: 'http://4300showcase.infosci.cornell.edu:5164/'
+          },
+          latexTechModal: {
+            title: 'LaTex Tech',
+            image: 'assets/segmentation.png',
+            description: 'Using the power of character segmentation and convolutional neural networks, LaTex Tech accepts images of handwriting or typed equations and provides users with LaTex code that can be easily integrated within research papers, problem sets, or general notes.',
+            role: 'I led a team of 3 people to build the character segmentation algorithm and created the user-friendly interface.',
+            githubLink: 'https://github.com/ashwinchar/LaTeX-Tech'
+          },
+          pigeonholeModal: {
+            title: 'Pigeonhole',
+            image: 'assets/pigeonhole1.gif',
+            description: 'Pigeonhole is a graphics-based game similar to the children\'s game Battleship. Players alternate turns trying to uncover every hole on the map by throwing a bird at a gridspace. There are various birds worth various points, and players accumulate points by successfully uncovering a hole with a given bird.',
+            role: 'I was the main game designer and programmer, creating game mechanics, states, and graphics.',
+            githubLink: 'https://github.com/ashwinchar/Pigeonhole'
+          }
+        };
+      
+        document.querySelectorAll('.learn-more-btn').forEach(button => {
+          button.addEventListener('click', () => {
+            const modalKey = button.getAttribute('data-modal');
+            const details = projectDetails[modalKey];
+      
+            if (details) {
+              modalContent.title.textContent = details.title;
+              modalContent.image.setAttribute('src', details.image);
+              modalContent.description.textContent = details.description;
+              modalContent.role.textContent = details.role;
+              modalContent.githubLink.setAttribute('href', details.githubLink);
+      
+              if (details.liveLink) {
+                modalContent.liveLink.setAttribute('href', details.liveLink);
+                modalContent.liveLink.style.display = 'inline-block';
+              } else {
+                modalContent.liveLink.style.display = 'none';
+              }
+      
+              modal.style.display = 'block';
+            }
+          });
+        });
+      
+        closeModal.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+      
+        window.addEventListener('click', event => {
+          if (event.target === modal) {
+            modal.style.display = 'none';
+          }
+        });
+      });
+      </script>      
 </body>
 </html>
