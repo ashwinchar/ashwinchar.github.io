@@ -11,10 +11,23 @@
   </head>
   <body>
 <!-- Hero -->
-<section class="et-hero-tabs">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Logo fade-in animation
+    const logo = document.getElementById('main-logo');
+    logo.style.opacity = '0';
+    setTimeout(() => {
+      logo.style.transition = 'opacity 2s';
+      logo.style.opacity = '1';
+    }, 500);
+  });
+  </script>     
+<section class="et-hero-tabs blue-gradient-background">
   <h1>HI I'M ASHWIN</h1>
   <div style="margin-bottom: 20px;"><h3 id="text"></h3></div>
-  <svg id="my_dataviz"></svg>
+  <div id="logo-container">
+    <img src="assets/main-logo.png" alt="Logo" id="main-logo">
+  </div>
     <div class="et-hero-tabs-container">
       <a class="et-hero-tab" href="#tab-es6">About</a>
       <a class="et-hero-tab" href="#tab-flexbox">Experience</a>
@@ -228,7 +241,7 @@
     
     <!-- Travel Modal -->
     <div id="travel-modal" class="modal">
-      <div class="modal-content">
+      <div class="interest-modal-content">
         <span class="close-modal">&times;</span>
         <h2>Traveling</h2>
         <p>I love exploring new cultures and discovering new places. Some of my favorite destinations include Costa Rica, London, and Hawaii.</p>
@@ -565,6 +578,6 @@
             }
           }
         });
-        </script>        
+        </script>   
 </body>
 </html>
