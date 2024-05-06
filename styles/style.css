@@ -281,7 +281,8 @@ h3 {
 
 
 .blue-gradient-background {
-  background: linear-gradient(var(--beige), var(--dark-blue));
+  background: linear-gradient(var(--dark-blue), var(--beige));
+  /* background: linear-gradient(var(--dark-blue), var(--beige)); */
   color: var(--off-white);
   display: flex;
   flex-direction: column;
