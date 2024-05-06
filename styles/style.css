@@ -997,3 +997,17 @@ h3 {
   margin-top: 15px;
   border-radius: 8px;
 }
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 900px;
+  max-height: 80vh;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow-y: auto;
+}
