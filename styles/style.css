@@ -1056,3 +1056,9 @@ h3 {
   max-width: 60%;
   transition: opacity 2s;
 }
+
+.experience-role{
+  color:black;
+  font-weight:bold;
+  font-size: larger;
+}
